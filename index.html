@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDM Dress Up</title>
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image Placeholder */
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Sends it behind all other elements */
+        }
+
+        /* Center-top placeholder */
+        #top-placeholder {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Middle placeholder */
+        #middle-placeholder {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Bottom placeholder (clickable) */
+        #bottom-placeholder {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #bottom-placeholder img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND IMAGE PLACEHOLDER -->
+    <img id="background" src="edmbg.png">
+
+    <!-- TOP IMAGE PLACEHOLDER -->
+    <div id="top-placeholder">
+        <img src="edmdressup.png"> <!-- adjust size as needed -->
+    </div>
+
+    <!-- MIDDLE IMAGE PLACEHOLDER -->
+    <div id="middle-placeholder">
+        <img src="rules.png">
+    </div>
+
+    <!-- BOTTOM CLICKABLE IMAGE PLACEHOLDER -->
+    <div id="bottom-placeholder">
+        <a href="round1.html">
+            <img src="play.png">
+        </a>
+    </div>
+
+</body>
+</html>
