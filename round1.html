@@ -33,16 +33,16 @@
         height: auto;
     }
 
-    /* SPEECH BUBBLE (smaller placeholder above platform) */
+    /* SPEECH BUBBLE */
     #speechBubble {
         position: absolute;
-        bottom: 55%; /* slightly above platform */
-        left: 25%;   /* centered relative to platform */
+        bottom: 55%;
+        left: 25%;
         width: 35%;
         height: auto;
     }
 
-    /* WARDROBE GRID FOR 6 CLICKABLE ITEMS */
+    /* WARDROBE GRID — now 4 items */
     #wardrobeGrid {
         position: absolute;
         top: 16%;
@@ -51,7 +51,7 @@
         height: 65%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         gap: 10px;
         padding: 10px;
         box-sizing: border-box;
@@ -76,63 +76,48 @@
 </head>
 <body>
 
-<!-- BACKGROUND IMAGE -->
+<!-- BACKGROUND -->
 <img id="bg" src="edmbg.png">
 
-
-<!-- SPEECH BUBBLE PLACEHOLDER -->
+<!-- SPEECH BUBBLE -->
 <img id="speechBubble" src="beachbubble.png">
 
-
-<!-- MAIN PLATFORM IMAGE PLACEHOLDER -->
+<!-- MAIN PLATFORM IMAGE -->
 <img id="platformDisplay" src="bebesprite.png">
 
-
-<!-- 6 CLICKABLE WARDROBE IMAGES -->
+<!-- 4 CLICKABLE WARDROBE ITEMS -->
 <div id="wardrobeGrid">
-    <img data-img="snow.png">
-    <img data-img="beach.png">
-    <img data-img="">
-    <img data-img="">
-    <img data-img="">
-    <img data-img="">
+    <img src="snow.png">
+    <img src="beach.png">
+    <img>
+    <img>
 </div>
 
-
 <script>
-/*
-    INSTRUCTIONS:
-    -------------------------------------------------
-    Add your six wardrobe image paths below:
-
-    const wardrobeImages = [
-        "images/look1.png",
-        "images/look2.png",
-        ...
-    ];
-
-    Only the platform image changes on click.
-    The speech bubble stays unchanged.
-*/
-
-const wardrobeImages = [
-    "", // image 1
-    "", // image 2
-    "", // image 3
-    "", // image 4
-    "", // image 5
-    ""  // image 6
+// Provide 4 platform looks
+const platformImages = [
+    "bebesnow.png",
+    "bebebeach.png",
+    "look3.png",
+    "look4.png"
 ];
 
-// Apply images to wardrobe placeholders + click listener
-const wardrobeSlots = document.querySelectorAll("#wardrobeGrid img");
+// Provide 4 corresponding speech bubble images
+const speechImages = [
+    "incorrect1.png",
+    "correct.png",
+    "incorrect2.png",
+    "incorrect3.png"
+];
 
-wardrobeSlots.forEach((slot, index) => {
-    slot.src = wardrobeImages[index];
-    slot.dataset.img = wardrobeImages[index];
+// Attach images + click function
+const slots = document.querySelectorAll("#wardrobeGrid img");
 
+slots.forEach((slot, i) => {
+    slot.src = platformImages[i]; // Wardrobe thumbnails
     slot.addEventListener("click", () => {
-        document.getElementById("platformDisplay").src = slot.dataset.img;
+        document.getElementById("platformDisplay").src = platformImages[i];
+        document.getElementById("speechBubble").src = speechImages[i];
     });
 });
 </script>
