@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDM Dress Up</title>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    /* Background image */
+    #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    /* MAIN PLATFORM IMAGE */
+    #platformDisplay {
+        position: absolute;
+        bottom: 22%;
+        left: 18%;
+        width: 28%;
+        height: auto;
+    }
+
+    /* SPEECH BUBBLE (smaller placeholder above platform) */
+    #speechBubble {
+        position: absolute;
+        bottom: 43%; /* slightly above platform */
+        left: 26%;   /* centered relative to platform */
+        width: 15%;
+        height: auto;
+    }
+
+    /* WARDROBE GRID FOR 6 CLICKABLE ITEMS */
+    #wardrobeGrid {
+        position: absolute;
+        top: 16%;
+        right: 8%;
+        width: 26%;
+        height: 65%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    #wardrobeGrid img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.6);
+        border-radius: 6px;
+        background: rgba(255,255,255,0.45);
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    #wardrobeGrid img:hover {
+        background: rgba(255,255,255,0.75);
+        transform: scale(1.03);
+    }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND IMAGE -->
+<img id="bg" src="edmbg.png">
+
+
+<!-- SPEECH BUBBLE PLACEHOLDER -->
+<img id="speechBubble" src="beachbubble.png">
+
+
+<!-- MAIN PLATFORM IMAGE PLACEHOLDER -->
+<img id="platformDisplay" src="bebesprite.png">
+
+
+<!-- 6 CLICKABLE WARDROBE IMAGES -->
+<div id="wardrobeGrid">
+    <img data-img="snow.png">
+    <img data-img="beach.png">
+    <img data-img="">
+    <img data-img="">
+    <img data-img="">
+    <img data-img="">
+</div>
+
+
+<script>
+/*
+    INSTRUCTIONS:
+    -------------------------------------------------
+    Add your six wardrobe image paths below:
+
+    const wardrobeImages = [
+        "images/look1.png",
+        "images/look2.png",
+        ...
+    ];
+
+    Only the platform image changes on click.
+    The speech bubble stays unchanged.
+*/
+
+const wardrobeImages = [
+    "", // image 1
+    "", // image 2
+    "", // image 3
+    "", // image 4
+    "", // image 5
+    ""  // image 6
+];
+
+// Apply images to wardrobe placeholders + click listener
+const wardrobeSlots = document.querySelectorAll("#wardrobeGrid img");
+
+wardrobeSlots.forEach((slot, index) => {
+    slot.src = wardrobeImages[index];
+    slot.dataset.img = wardrobeImages[index];
+
+    slot.addEventListener("click", () => {
+        document.getElementById("platformDisplay").src = slot.dataset.img;
+    });
+});
+</script>
+
+</body>
+</html>
