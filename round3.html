@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDM Dress Up</title>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    /* Background image */
+    #bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    /* MAIN PLATFORM IMAGE */
+    #platformDisplay {
+        position: absolute;
+        bottom: 22%;
+        left: 0;
+        width: 50%;
+        height: auto;
+    }
+
+    /* SPEECH BUBBLE */
+    #speechBubble {
+        position: absolute;
+        bottom: 55%;
+        left: 25%;
+        width: 35%;
+        height: auto;
+    }
+
+    /* WARDROBE GRID — 4 items */
+    #wardrobeGrid {
+        position: absolute;
+        top: 16%;
+        right: 10%;
+        width: 26%;
+        height: 65%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    /* CLICKABLE IMAGES — clean, no bubble background */
+    #wardrobeGrid img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+        transition: transform 0.1s;
+    }
+
+    #wardrobeGrid img:hover {
+        transform: scale(1.05);
+    }
+
+    /* NEXT BUTTON (initially hidden) */
+    #nextButton {
+        position: absolute;
+        bottom: 0%;
+        right: 6%;
+        width: 18%;
+        height: auto;
+        cursor: pointer;
+        display: none; /* becomes visible after correct look is chosen */
+    }
+
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<img id="bg" src="edmbg.png">
+
+<!-- SPEECH BUBBLE -->
+<img id="speechBubble" src="snowbubble.png">
+
+<!-- MAIN PLATFORM IMAGE -->
+<img id="platformDisplay" src="michiesprite.png">
+
+<!-- 4 CLICKABLE WARDROBE ITEMS -->
+<div id="wardrobeGrid">
+    <img src="snow.png">
+    <img src="beach.png">
+    <img src="dress.png">
+    <img src="nightout.png">
+</div>
+
+<!-- HIDDEN NEXT-PAGE BUTTON -->
+<img id="nextButton" src="next.png">
+
+<script>
+// Platform options
+const platformImages = [
+    "michiesnow.png",  // <-- Look 1 is now the CORRECT one
+    "michiebeach.png",
+    "michiedress.png",
+    "michienight.png"
+];
+
+// Speech bubble responses
+const speechImages = [
+    "correct.png",   // <-- correct speech now aligns with Look 1
+    "incorrect1.png",
+    "incorrect2.png",
+    "incorrect3.png"
+];
+
+// Get elements
+const slots = document.querySelectorAll("#wardrobeGrid img");
+const nextButton = document.getElementById("nextButton");
+
+// Apply wardrobe thumbnails + click behavior
+slots.forEach((slot, i) => {
+    slot.src = platformImages[i];
+
+    slot.addEventListener("click", () => {
+        // Update platform + bubble
+        document.getElementById("platformDisplay").src = platformImages[i];
+        document.getElementById("speechBubble").src = speechImages[i];
+
+        // If Look 1 (index 0) was chosen → show NEXT button
+        if (i === 0) {
+            nextButton.style.display = "block";
+        }
+    });
+});
+
+// What happens when clicking next button
+nextButton.addEventListener("click", () => {
+    window.location.href = "thankyou.html";
+});
+</script>
+
+</body>
+</html>
